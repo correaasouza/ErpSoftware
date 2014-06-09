@@ -19,7 +19,7 @@ import javax.persistence.NoResultException;
     public T salvar(Object entity)
     {
         T saved = null;
-        saved = getEntityManager().merge(entity);
+      //09062014-15:10  saved = getEntityManager().merge(entity);
         return saved;
     }
 
