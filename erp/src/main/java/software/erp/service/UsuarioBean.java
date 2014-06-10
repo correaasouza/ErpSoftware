@@ -5,15 +5,18 @@ package software.erp.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import software.erp.data.UsuarioDAO;
 import software.erp.model.Usuario;
 
+@ManagedBean
 public class UsuarioBean
 {
-
+	@EJB
     private UsuarioDAO usuarioDao;
     private String confirmaSenha;
     private Usuario usuario;
