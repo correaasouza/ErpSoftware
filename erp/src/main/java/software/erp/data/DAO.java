@@ -7,6 +7,7 @@ import javax.persistence.EntityManager;
 
 public interface DAO<T, I extends Serializable> {
 
+//	teste
 	public abstract T salvar(T obj);
 
     public abstract void atualizar(Object obj);
