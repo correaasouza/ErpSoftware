@@ -10,6 +10,7 @@ public interface DAO<T, I extends Serializable> {
 	//teste 
 	public abstract T salvar(T obj);
 
+//	teste1
     public abstract void atualizar(Object obj);
 
     public abstract T carregar(Class<T> class1, I pk);
