@@ -9,7 +9,7 @@ import javax.persistence.PersistenceContext;
 public abstract class DAOImplementacao<T, I extends Serializable> implements DAO<T, I>{
 
 	
-	///Alexandre cas
+	///Alexandre zeta
 	 @PersistenceContext 
     private EntityManager manager;
 
