@@ -1,12 +1,12 @@
 package software.erp.data;
 
-
 import java.io.Serializable;
 import java.util.List;
+
 import javax.persistence.EntityManager;
 
 public interface DAO<T, I extends Serializable> {
- 
+	 
 	//teste 
 	public abstract T salvar(T obj);
 

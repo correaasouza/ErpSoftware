@@ -1,143 +1,140 @@
 package software.erp.service;
 
-
-
 import java.util.List;
 import java.util.Map;
 
-import javax.ejb.EJB;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
 import javax.faces.context.FacesContext;
 
 import software.erp.data.UsuarioDAO;
 import software.erp.model.Usuario;
 
-@ManagedBean
-public class UsuarioBean
-{
-	@EJB
-    private UsuarioDAO usuarioDao;
-    private String confirmaSenha;
-    private Usuario usuario;
-    private List lista;
-    private Map parametros;
-    private String destinoSalvar;
 
-    public UsuarioBean()
-    {
-        usuario = new Usuario();
-        usuario = new Usuario();
-    }
 
-    public UsuarioDAO getUsuarioDao()
-    {
-        return usuarioDao;
-    }
+//@ManagedBean
+public class UsuarioBean{
+	//@EJB
+  private UsuarioDAO usuarioDao;
+  private String confirmaSenha;
+  private Usuario usuario;
+  private List lista;
+  private Map parametros;
+  private String destinoSalvar;
 
-    public void setUsuarioDao(UsuarioDAO usuarioDao)
-    {
-        this.usuarioDao = usuarioDao;
-    }
+  public UsuarioBean()
+  {
+      usuario = new Usuario();
+  }
 
-    public String novo()
-    {
-        usuario.setAtivo(true);
-        return "usuario";
-    }
+  public UsuarioDAO getUsuarioDao()
+  {
+      return this.usuarioDao;
+  }
 
-    public String editar()
-    {
-        confirmaSenha = usuario.getSenha();
-        return "usuario";
-    }
+  public void setUsuarioDao(UsuarioDAO usuarioDao)
+  {
+      this.usuarioDao = usuarioDao;
+  }
 
-    public String salvar()
-    {
-        FacesContext context = FacesContext.getCurrentInstance();
-        if(!usuario.getSenha().equalsIgnoreCase(confirmaSenha))
-        {
-            context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha confirmada incorreta", ""));
-            return null;
-        } else
-        {
-            usuarioDao.salvar(usuario);
-            return "mostraUsuario";
-        }
-    }
+  public String novo()
+  {
+      usuario.setAtivo(true);
+      return "usuario";
+  }
 
-    public String excluir()
-    {
-        usuarioDao.excluir(Usuario.class, usuario.getId());
-        lista = null;
-        return null;
-    }
+  public String editar()
+  {
+      confirmaSenha = usuario.getSenha();
+      return "usuario";
+  }
 
-    public String ativar()
-    {
-        if(usuario.isAtivo())
-        {
-            usuario.setAtivo(false);
-        } else
-        {
-            usuario.setAtivo(true);
-        }
-        usuarioDao.atualizar(usuario);
-        return null;
-    }
+  public String salvar()
+  {
+      FacesContext context = FacesContext.getCurrentInstance();
+      if(!usuario.getSenha().equalsIgnoreCase(confirmaSenha))
+      {
+          context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Senha confirmada incorreta", ""));
+          return null;
+      } else
+      {
+          this.usuarioDao.salvar(usuario);
+          return "mostraUsuario";
+      }
+  }
 
-    public List getLista()
-    {
-        if(lista == null)
-        {
-            lista = usuarioDao.getAll(Usuario.class);
-        }
-        return lista;
-    }
+  public String excluir()
+  {
+      usuarioDao.excluir(Usuario.class, usuario.getId());
+      lista = null;
+      return null;
+  }
 
-    public Map getParametros()
-    {
-        return parametros;
-    }
+  public String ativar()
+  {
+      if(usuario.isAtivo())
+      {
+          usuario.setAtivo(false);
+      } else
+      {
+          usuario.setAtivo(true);
+      }
+      usuarioDao.atualizar(usuario);
+      return null;
+  }
 
-    public void setParametros(Map parametros)
-    {
-        this.parametros = parametros;
-    }
+  public List getLista()
+  {
+      if(lista == null)
+      {
+          lista = usuarioDao.getAll(Usuario.class);
+      }
+      return lista;
+  }
 
-    public String getConfirmaSenha()
-    {
-        return confirmaSenha;
-    }
+  public Map getParametros()
+  {
+      return parametros;
+  }
 
-    public void setConfirmaSenha(String confirmaSenha)
-    {
-        this.confirmaSenha = confirmaSenha;
-    }
+  public void setParametros(Map parametros)
+  {
+      this.parametros = parametros;
+  }
 
-    public Usuario getUsuario()
-    {
-        return usuario;
-    }
+  public String getConfirmaSenha()
+  {
+      return confirmaSenha;
+  }
 
-    public void setUsuario(Usuario usuario)
-    {
-        this.usuario = usuario;
-    }
+  public void setConfirmaSenha(String confirmaSenha)
+  {
+      this.confirmaSenha = confirmaSenha;
+  }
 
-    public String getDestinoSalvar()
-    {
-        return destinoSalvar;
-    }
+  public Usuario getUsuario()
+  {
+      return usuario;
+  }
 
-    public void setDestinoSalvar(String destinoSalvar)
-    {
-        this.destinoSalvar = destinoSalvar;
-    }
+  public void setUsuario(Usuario usuario)
+  {
+      this.usuario = usuario;
+  }
 
-    public void setLista(List lista)
-    {
-        this.lista = lista;
-    }
+  public String getDestinoSalvar()
+  {
+      return destinoSalvar;
+  }
+
+  public void setDestinoSalvar(String destinoSalvar)
+  {
+      this.destinoSalvar = destinoSalvar;
+  }
+
+  public void setLista(List lista)
+  {
+      this.lista = lista;
+  }
 }
+
 
